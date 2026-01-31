@@ -1,0 +1,102 @@
+.lead-container {
+  padding: 20px;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+.styled-table th,
+.styled-table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+.styled-table th {
+  background: #f4f6f8;
+}
+
+.actions button {
+  margin-right: 6px;
+  padding: 6px 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  background: #1976d2;
+  color: white;
+}
+
+.actions .danger {
+  background: #d32f2f;
+}
+
+.badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  color: white;
+}
+
+.badge.new {
+  background: gray;
+}
+
+.badge.assigned {
+  background: #1976d2;
+}
+
+.badge.in_progress {
+  background: orange;
+}
+
+.badge.resolved {
+  background: green;
+}
+
+.badge.closed {
+  background: black;
+}
+
+/* MODAL */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 6px;
+  width: 400px;
+}
+
+.modal-content select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 10px;
+}
+
+.modal-actions {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.timeline {
+  list-style: none;
+  padding-left: 0;
+}
+
+.timeline li {
+  margin-bottom: 10px;
+}
