@@ -31,7 +31,7 @@ export default function AdminMetrics() {
     }
   };
 
-  if (!metrics) return <p style={{ padding: "30px" }}>Loading...</p>;
+  if (!metrics) return <p className="loading">Loading...</p>;
 
   // ===== CHART DATA =====
   const statusData = [
@@ -83,9 +83,9 @@ export default function AdminMetrics() {
       </div>
 
       {/* ===== CHARTS ===== */}
-      <div className="dashboard-grid" style={{ marginTop: "40px" }}>
+      <div className="charts-row">
         {/* PIE CHART */}
-        <div className="dashboard-card" style={{ width: "450px" }}>
+        <div className="dashboard-card chart-card">
           <h3>Complaint Status</h3>
 
           <ResponsiveContainer width="100%" height={300}>
@@ -101,7 +101,7 @@ export default function AdminMetrics() {
         </div>
 
         {/* BAR CHART */}
-        <div className="dashboard-card" style={{ width: "450px" }}>
+        <div className="dashboard-card chart-card">
           <h3>User Roles</h3>
 
           <BarChart width={400} height={300} data={roleData}>

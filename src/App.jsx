@@ -11,6 +11,7 @@ import MyComplaints from "./pages/customer/MyComplaints";
 import ComplaintDetail from "./pages/customer/ComplaintDetail";
 
 /* ADMIN */
+import AdminAddUser from "./pages/admin/AdminAddUser";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminComplaints from "./pages/admin/AdminComplaints";
 import AdminUnassignedComplaints from "./pages/admin/AdminUnassignedComplaints";
@@ -106,6 +107,14 @@ function App() {
           element={
             <ProtectedRoute allowedRoles={["ADMIN"]}>
               <AdminMetrics />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/users/create"
+          element={
+            <ProtectedRoute allowedRoles={["ADMIN"]}>
+              <AdminAddUser />
             </ProtectedRoute>
           }
         />

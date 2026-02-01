@@ -41,8 +41,8 @@ export default function Register() {
   };
 
   return (
-    <div className="login-container">
-      <form className="card" onSubmit={handleRegister}>
+    <div className="login-container center-screen">
+      <form className="card form-card" onSubmit={handleRegister}>
         <h2>Create Account</h2>
 
         {error && <p className="error">{error}</p>}

@@ -47,8 +47,8 @@ function Login() {
   };
 
   return (
-    <div className="login-container">
-      <form className="card" onSubmit={handleLogin}>
+    <div className="login-container center-screen">
+      <form className="card form-card" onSubmit={handleLogin}>
         <h2>Complaint System Login</h2>
 
         {error && <p className="error">{error}</p>}

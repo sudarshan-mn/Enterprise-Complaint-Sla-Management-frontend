@@ -79,104 +79,114 @@ export default function LeadComplaints() {
   const badgeClass = (status) => `badge ${status.toLowerCase()}`;
 
   return (
-    <div className="lead-container">
-      <h2>📊 Complaints Monitoring</h2>
+    <div className="modern-dashboard">
+      <div className="dashboard-topbar">
+        <h1>📊 Complaints Monitoring</h1>
+      </div>
 
-      <table className="styled-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Status</th>
-            <th>Priority</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
+      <div className="dashboard-content">
+        <div className="table-wrapper">
+          <table className="styled-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Status</th>
+                <th>Priority</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
 
-        <tbody>
-          {complaints.map((c) => (
-            <tr key={c.id}>
-              <td>{c.id}</td>
-              <td>{c.title}</td>
-              <td>
-                <span className={badgeClass(c.status)}>{c.status}</span>
-              </td>
-              <td>{c.priority}</td>
-              <td className="actions">
-                {/* Timeline → ALWAYS */}
-                <button onClick={() => viewTimeline(c.id)}>📜 Timeline</button>
+            <tbody>
+              {complaints.map((c) => (
+                <tr key={c.id}>
+                  <td>{c.id}</td>
+                  <td>{c.title}</td>
+                  <td>
+                    <span className={badgeClass(c.status)}>{c.status}</span>
+                  </td>
+                  <td>{c.priority}</td>
+                  <td className="actions">
+                    {/* Timeline → ALWAYS */}
+                    <button onClick={() => viewTimeline(c.id)}>
+                      📜 Timeline
+                    </button>
 
-                {/* Reassign → NOT for NEW / RESOLVED / CLOSED */}
-                {c.status !== "NEW" &&
-                  c.status !== "RESOLVED" &&
-                  c.status !== "CLOSED" && (
-                    <button onClick={() => openReassign(c)}>👤 Reassign</button>
-                  )}
+                    {/* Reassign → NOT for NEW / RESOLVED / CLOSED */}
+                    {c.status !== "NEW" &&
+                      c.status !== "RESOLVED" &&
+                      c.status !== "CLOSED" && (
+                        <button onClick={() => openReassign(c)}>
+                          👤 Reassign
+                        </button>
+                      )}
 
-                {/* Escalate → NOT for RESOLVED / CLOSED */}
-                {c.status !== "RESOLVED" && c.status !== "CLOSED" && (
-                  <button className="danger" onClick={() => escalate(c.id)}>
-                    ⚠️ Escalate
-                  </button>
-                )}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-
-      {/* ---------- TIMELINE MODAL ---------- */}
-      {showTimeline && (
-        <div className="modal">
-          <div className="modal-content">
-            <h3>Complaint Timeline</h3>
-
-            {timeline.length === 0 ? (
-              <p>No history available</p>
-            ) : (
-              <ul className="timeline">
-                {timeline.map((t, i) => (
-                  <li key={i}>
-                    <b>{t.oldStatus}</b> ➜ <b>{t.newStatus}</b>
-                    <br />
-                    <small>
-                      {t.changedByName} ({t.changedByRole})
-                    </small>
-                  </li>
-                ))}
-              </ul>
-            )}
-
-            <button onClick={() => setShowTimeline(false)}>Close</button>
-          </div>
-        </div>
-      )}
-
-      {/* ---------- REASSIGN MODAL ---------- */}
-      {showReassign && (
-        <div className="modal">
-          <div className="modal-content">
-            <h3>Reassign Complaint</h3>
-
-            <select
-              value={selectedEngineer}
-              onChange={(e) => setSelectedEngineer(e.target.value)}
-            >
-              <option value="">Select Engineer</option>
-              {engineers.map((e) => (
-                <option key={e.id} value={e.id}>
-                  {e.name}
-                </option>
+                    {/* Escalate → NOT for RESOLVED / CLOSED */}
+                    {c.status !== "RESOLVED" && c.status !== "CLOSED" && (
+                      <button className="danger" onClick={() => escalate(c.id)}>
+                        ⚠️ Escalate
+                      </button>
+                    )}
+                  </td>
+                </tr>
               ))}
-            </select>
+            </tbody>
+          </table>
 
-            <div className="modal-actions">
-              <button onClick={confirmReassign}>Confirm</button>
-              <button onClick={() => setShowReassign(false)}>Cancel</button>
+          {/* ---------- TIMELINE MODAL ---------- */}
+          {showTimeline && (
+            <div className="modal">
+              <div className="modal-content">
+                <h3>Complaint Timeline</h3>
+
+                {timeline.length === 0 ? (
+                  <p>No history available</p>
+                ) : (
+                  <ul className="timeline">
+                    {timeline.map((t, i) => (
+                      <li key={i}>
+                        <b>{t.oldStatus}</b> ➜ <b>{t.newStatus}</b>
+                        <br />
+                        <small>
+                          {t.changedByName} ({t.changedByRole})
+                        </small>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
+                <button onClick={() => setShowTimeline(false)}>Close</button>
+              </div>
             </div>
-          </div>
+          )}
+
+          {/* ---------- REASSIGN MODAL ---------- */}
+          {showReassign && (
+            <div className="modal">
+              <div className="modal-content">
+                <h3>Reassign Complaint</h3>
+
+                <select
+                  value={selectedEngineer}
+                  onChange={(e) => setSelectedEngineer(e.target.value)}
+                >
+                  <option value="">Select Engineer</option>
+                  {engineers.map((e) => (
+                    <option key={e.id} value={e.id}>
+                      {e.name}
+                    </option>
+                  ))}
+                </select>
+
+                <div className="modal-actions">
+                  <button onClick={confirmReassign}>Confirm</button>
+                  <button onClick={() => setShowReassign(false)}>Cancel</button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 }

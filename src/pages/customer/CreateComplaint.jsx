@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { createComplaint } from "../../api/complaint";
+import "../../styles/global.css";
 
 export default function CreateComplaint() {
   const [form, setForm] = useState({
@@ -34,50 +35,94 @@ export default function CreateComplaint() {
   };
 
   return (
-    <div className="card" style={{ maxWidth: "500px", margin: "30px auto" }}>
-      <h2>Raise Complaint</h2>
+    <div className="modern-dashboard">
+      <div className="dashboard-topbar">
+        <h1>Raise Complaint</h1>
+      </div>
 
-      {message && <p>{message}</p>}
+      <div className="dashboard-content">
+        <div className="dashboard-header">
+          <h2>Submit Your Complaint</h2>
+          <p>Tell us about your issue and we'll resolve it quickly</p>
+        </div>
 
-      <form onSubmit={handleSubmit}>
-        <input
-          name="title"
-          placeholder="Title"
-          value={form.title}
-          onChange={handleChange}
-          required
-        />
+        <div className="form-container">
+          <div className="form-card-modern">
+            {message && (
+              <div
+                className={`message ${message.includes("successfully") ? "success" : "error"}`}
+              >
+                {message}
+              </div>
+            )}
 
-        <textarea
-          name="description"
-          placeholder="Description"
-          value={form.description}
-          onChange={handleChange}
-          required
-        />
+            <form onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label>Complaint Title</label>
+                <input
+                  name="title"
+                  placeholder="e.g., Payment issue with order"
+                  value={form.title}
+                  onChange={handleChange}
+                  required
+                  className="form-input"
+                />
+              </div>
 
-        <select
-          name="category"
-          value={form.category}
-          onChange={handleChange}
-          required
-        >
-          <option value="">Select Category</option>
-          <option value="PAYMENT">Payment</option>
-          <option value="LOGIN">Login</option>
-          <option value="DELIVERY">Delivery</option>
-          <option value="SECURITY">Security</option>
-          <option value="OTHER">Other</option>
-        </select>
+              <div className="form-group">
+                <label>Description</label>
+                <textarea
+                  name="description"
+                  placeholder="Describe your issue in detail..."
+                  value={form.description}
+                  onChange={handleChange}
+                  required
+                  className="form-input"
+                  rows="4"
+                />
+              </div>
 
-        <select name="priority" value={form.priority} onChange={handleChange}>
-          <option value="LOW">Low</option>
-          <option value="MEDIUM">Medium</option>
-          <option value="HIGH">High</option>
-        </select>
+              <div className="form-row">
+                <div className="form-group">
+                  <label>Category</label>
+                  <select
+                    name="category"
+                    value={form.category}
+                    onChange={handleChange}
+                    required
+                    className="form-input"
+                  >
+                    <option value="">Select Category</option>
+                    <option value="PAYMENT">💳 Payment</option>
+                    <option value="LOGIN">🔐 Login</option>
+                    <option value="DELIVERY">🚚 Delivery</option>
+                    <option value="SECURITY">🛡️ Security</option>
+                    <option value="OTHER">📝 Other</option>
+                  </select>
+                </div>
 
-        <button type="submit">Submit Complaint</button>
-      </form>
+                <div className="form-group">
+                  <label>Priority</label>
+                  <select
+                    name="priority"
+                    value={form.priority}
+                    onChange={handleChange}
+                    className="form-input"
+                  >
+                    <option value="LOW">🟢 Low</option>
+                    <option value="MEDIUM">🟡 Medium</option>
+                    <option value="HIGH">🔴 High</option>
+                  </select>
+                </div>
+              </div>
+
+              <button type="submit" className="btn-primary btn-large">
+                Submit Complaint
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

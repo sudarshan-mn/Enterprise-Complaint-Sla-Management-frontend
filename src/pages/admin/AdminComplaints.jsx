@@ -19,21 +19,44 @@ export default function AdminAllComplaints() {
   };
 
   return (
-    <div className="dashboard-container">
-      <h2>All Complaints</h2>
+    <div className="modern-dashboard">
+      <div className="dashboard-topbar">
+        <h1>All Complaints</h1>
+      </div>
 
-      <div className="dashboard-grid">
-        {complaints.map((c) => (
-          <div key={c.id} className="full-complaint-card">
-            <h3>{c.title}</h3>
-            <p>ID: {c.id}</p>
-            <p>Description: {c.description}</p>
-            <p>Status: {c.status}</p>
-            <p>Priority: {c.priority}</p>
-            <p>Category: {c.category}</p>
-            <p>Assigned To: {c.assignedToName || "Not Assigned"}</p>
-          </div>
-        ))}
+      <div className="dashboard-content">
+        <div className="dashboard-cards-grid-wide">
+          {complaints.map((c) => (
+            <div key={c.id} className="full-complaint-card">
+              <div className="complaint-header">
+                <h3>{c.title}</h3>
+                <span className={`badge badge-${c.status?.toLowerCase()}`}>
+                  {c.status}
+                </span>
+              </div>
+              <div className="complaint-body">
+                <p>
+                  <strong>ID:</strong> {c.id}
+                </p>
+                <p>
+                  <strong>Priority:</strong>{" "}
+                  <span
+                    className={`priority-badge priority-${c.priority?.toLowerCase()}`}
+                  >
+                    {c.priority}
+                  </span>
+                </p>
+                <p>
+                  <strong>Category:</strong> {c.category}
+                </p>
+                <p>
+                  <strong>Assigned To:</strong>{" "}
+                  {c.assignedToName || "Not Assigned"}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

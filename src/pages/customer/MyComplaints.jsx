@@ -32,34 +32,56 @@ export default function MyComplaints() {
   };
 
   return (
-    <div className="dashboard-container">
-      <h2>My Complaints</h2>
+    <div className="modern-dashboard">
+      <div className="dashboard-topbar">
+        <h1>My Complaints</h1>
+      </div>
 
-      {/* LOADING */}
-      {loading && <p>Loading complaints...</p>}
+      <div className="dashboard-content">
+        <div className="dashboard-header">
+          <h2>Your Complaints</h2>
+          <p>Track and manage all your submitted complaints here</p>
+        </div>
 
-      {/* EMPTY */}
-      {!loading && complaints.length === 0 && <p>No complaints found.</p>}
+        {/* LOADING */}
+        {loading && (
+          <p style={{ color: "white", textAlign: "center" }}>
+            Loading complaints...
+          </p>
+        )}
 
-      {/* LIST */}
-      {!loading &&
-        complaints.map((c) => (
-          <div
-            key={c.id}
-            className="dashboard-card"
-            style={{ cursor: "pointer" }}
-            onClick={() => navigate(`/customer/complaints/${c.id}`)}
-          >
-            <h3>{c.title}</h3>
-            <p>
-              <strong>ID:</strong> {c.id}
-            </p>
-            <p>
-              <strong>Created At:</strong>{" "}
-              {new Date(c.createdAt).toLocaleString()}
-            </p>
+        {/* EMPTY */}
+        {!loading && complaints.length === 0 && (
+          <p style={{ color: "white", textAlign: "center" }}>
+            No complaints found.
+          </p>
+        )}
+
+        {/* LIST */}
+        {!loading && (
+          <div className="complaints-cards-grid">
+            {complaints.map((c) => (
+              <div
+                key={c.id}
+                className="complaint-list-card clickable"
+                onClick={() => navigate(`/customer/complaints/${c.id}`)}
+              >
+                <div className="card-top-section">
+                  <h3>{c.title}</h3>
+                  <span className="complaint-id">#{c.id}</span>
+                </div>
+                <div className="card-bottom-section">
+                  <p className="created-date">
+                    📅 {new Date(c.createdAt).toLocaleDateString()} at{" "}
+                    {new Date(c.createdAt).toLocaleTimeString()}
+                  </p>
+                  <button className="view-btn">View Details →</button>
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
+        )}
+      </div>
     </div>
   );
 }

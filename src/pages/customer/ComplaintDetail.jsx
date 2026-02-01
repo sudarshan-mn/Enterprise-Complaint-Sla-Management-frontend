@@ -16,34 +16,72 @@ export default function ComplaintDetail() {
     setComplaint(res.data);
   };
 
-  if (!complaint) return <p style={{ padding: "30px" }}>Loading...</p>;
+  if (!complaint)
+    return (
+      <div className="modern-dashboard">
+        <div className="dashboard-content">
+          <p style={{ color: "white", textAlign: "center" }}>Loading...</p>
+        </div>
+      </div>
+    );
 
   return (
-    <div className="dashboard-container">
-      <h2>Complaint Detail</h2>
+    <div className="modern-dashboard">
+      <div className="dashboard-topbar">
+        <h1>Complaint Details</h1>
+      </div>
 
-      <div className="dashboard-card">
-        <p>
-          <strong>ID:</strong> {complaint.id}
-        </p>
-        <p>
-          <strong>Title:</strong> {complaint.title}
-        </p>
-        <p>
-          <strong>Description:</strong> {complaint.description}
-        </p>
-        <p>
-          <strong>Status:</strong> {complaint.status}
-        </p>
-        <p>
-          <strong>Priority:</strong> {complaint.priority}
-        </p>
-        <p>
-          <strong>Category:</strong> {complaint.category}
-        </p>
-        <p>
-          <strong>Created At:</strong> {complaint.createdAt}
-        </p>
+      <div className="dashboard-content">
+        <div className="detail-card-wrapper">
+          <div className="detail-card">
+            <div className="detail-header">
+              <h2>{complaint.title}</h2>
+              <span
+                className={`status-badge status-${complaint.status?.toLowerCase()}`}
+              >
+                {complaint.status}
+              </span>
+            </div>
+
+            <div className="detail-body">
+              <div className="detail-section">
+                <h3>Complaint Information</h3>
+                <div className="detail-row">
+                  <span className="label">Complaint ID:</span>
+                  <span className="value">{complaint.id}</span>
+                </div>
+                <div className="detail-row">
+                  <span className="label">Category:</span>
+                  <span className="value badge-info">{complaint.category}</span>
+                </div>
+                <div className="detail-row">
+                  <span className="label">Priority:</span>
+                  <span
+                    className={`value priority-badge priority-${complaint.priority?.toLowerCase()}`}
+                  >
+                    {complaint.priority}
+                  </span>
+                </div>
+              </div>
+
+              <div className="detail-section">
+                <h3>Description</h3>
+                <p className="description-text">{complaint.description}</p>
+              </div>
+
+              <div className="detail-section">
+                <h3>Timeline</h3>
+                <div className="timeline-item">
+                  <span className="timeline-label">Submitted:</span>
+                  <span className="timeline-date">
+                    {new Date(complaint.createdAt).toLocaleDateString()} at{" "}
+                    {new Date(complaint.createdAt).toLocaleTimeString()}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -1,18 +1,22 @@
 /* PAGE */
 .customer-dashboard {
   min-height: 100vh;
-  background: linear-gradient(135deg, #eef2f7, #f9fbff);
-  font-family: "Segoe UI", sans-serif;
+  width: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  flex-direction: column;
 }
 
 /* TOP BAR */
 .customer-topbar {
-  background: linear-gradient(90deg, #3f51b5, #5c6bc0);
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
   color: white;
-  padding: 16px 32px;
+  padding: 20px 32px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 .customer-topbar h2 {
@@ -21,63 +25,85 @@
 }
 
 .logout-btn {
-  background: #ff5252;
+  background: linear-gradient(90deg, #ff6b6b 0%, #ee5a52 100%);
   border: none;
   color: white;
-  padding: 8px 16px;
-  border-radius: 6px;
+  padding: 10px 20px;
+  border-radius: 8px;
   cursor: pointer;
-  font-weight: 500;
+  font-weight: 600;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
 }
 
 .logout-btn:hover {
-  background: #e53935;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
 }
 
 /* HEADER */
 .customer-header {
   text-align: center;
-  margin: 40px 0;
+  padding: 50px 20px 40px;
+  color: white;
 }
 
 .customer-header h1 {
-  font-size: 32px;
-  margin-bottom: 10px;
-  color: #333;
+  font-size: 42px;
+  margin: 0 0 12px 0;
+  font-weight: 800;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .customer-header p {
-  font-size: 16px;
-  color: #666;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+/* MAIN CONTENT AREA */
+.customer-content {
+  flex: 1;
+  overflow-y: auto;
 }
 
 /* CARDS */
 .customer-cards {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  flex-wrap: wrap;
-  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 28px;
+  padding: 40px 32px;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .customer-card {
-  background: white;
-  width: 320px;
-  padding: 30px;
-  border-radius: 14px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  background: linear-gradient(135deg, #ffffff 0%, #f9faff 100%);
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 10px 35px rgba(102, 126, 234, 0.12);
   text-align: center;
-  transition: all 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  border: 1px solid rgba(102, 126, 234, 0.08);
+  border-top: 4px solid var(--primary);
+  position: relative;
+  overflow: hidden;
 }
 
 .customer-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 20px 50px rgba(102, 126, 234, 0.2);
 }
 
 .customer-card .icon {
   font-size: 40px;
-  margin-bottom: 15px;
+  margin-bottom: 14px;
+  color: var(--primary);
 }
 
 .customer-card h3 {
@@ -92,15 +118,15 @@
 }
 
 .customer-card button {
-  background: #3f51b5;
+  background: linear-gradient(90deg, var(--primary), var(--primary-600));
   border: none;
   color: white;
   padding: 10px 18px;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .customer-card button:hover {
-  background: #303f9f;
+  transform: translateY(-2px);
 }

@@ -4,6 +4,7 @@ import {
   closeComplaint,
   getComplaintTimeline,
 } from "../../api/managerApi";
+import "../../styles/global.css";
 
 export default function ManagerAllComplaints() {
   const [complaints, setComplaints] = useState([]);
@@ -16,7 +17,7 @@ export default function ManagerAllComplaints() {
 
   const loadComplaints = async () => {
     const res = await getAllComplaints();
-    setComplaints(res.data.content);
+    setComplaints(res.data.content || []);
   };
 
   const close = async (id) => {
@@ -27,62 +28,69 @@ export default function ManagerAllComplaints() {
 
   const viewTimeline = async (id) => {
     const res = await getComplaintTimeline(id);
-    setTimeline(res.data);
+    setTimeline(res.data || []);
     setShowTimeline(true);
   };
 
   return (
-    <div>
-      <h2>All Complaints</h2>
+    <div className="modern-dashboard">
+      <div className="dashboard-topbar">
+        <h1>All Complaints</h1>
+      </div>
 
-      <table border="1" width="100%">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Status</th>
-            <th>Priority</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {complaints.map((c) => (
-            <tr key={c.id}>
-              <td>{c.id}</td>
-              <td>{c.title}</td>
-              <td>{c.status}</td>
-              <td>{c.priority}</td>
-              <td>
-                <button onClick={() => viewTimeline(c.id)}>Timeline</button>
-
-                {c.status === "RESOLVED" && (
-                  <button onClick={() => close(c.id)}>Close</button>
-                )}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-
+      <div className="dashboard-content">
+        <div className="table-wrapper">
+          <table className="styled-table" width="100%">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Status</th>
+                <th>Priority</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {complaints.map((c) => (
+                <tr key={c.id}>
+                  <td>{c.id}</td>
+                  <td>{c.title}</td>
+                  <td>{c.status}</td>
+                  <td>{c.priority}</td>
+                  <td>
+                    <button onClick={() => viewTimeline(c.id)}>Timeline</button>
+                    {c.status === "RESOLVED" && (
+                      <button onClick={() => close(c.id)}>Close</button>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
       {/* TIMELINE MODAL */}
       {showTimeline && (
-        <div style={{ border: "1px solid black", padding: 10, marginTop: 20 }}>
-          <h3>Complaint Timeline</h3>
+        <div className="modal">
+          <div className="modal-content">
+            <h3>Complaint Timeline</h3>
 
-          <ul>
-            {timeline.map((t, i) => (
-              <li key={i}>
-                <b>{t.oldStatus}</b> ➜ <b>{t.newStatus}</b>
-                <br />
-                <small>
-                  {t.changedByName} ({t.changedByRole})
-                </small>
-              </li>
-            ))}
-          </ul>
+            <ul>
+              {timeline.map((t, i) => (
+                <li key={i}>
+                  <b>{t.oldStatus}</b> ➜ <b>{t.newStatus}</b>
+                  <br />
+                  <small>
+                    {t.changedByName} ({t.changedByRole})
+                  </small>
+                </li>
+              ))}
+            </ul>
 
-          <button onClick={() => setShowTimeline(false)}>Close</button>
+            <div className="modal-actions">
+              <button onClick={() => setShowTimeline(false)}>Close</button>
+            </div>
+          </div>
         </div>
       )}
     </div>

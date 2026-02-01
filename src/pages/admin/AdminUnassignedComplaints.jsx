@@ -65,54 +65,74 @@ export default function AdminUnassignedComplaints() {
   };
 
   return (
-    <div className="dashboard-container">
-      <h2>Unassigned Complaints</h2>
+    <div className="modern-dashboard">
+      <div className="dashboard-topbar">
+        <h1>Unassigned Complaints</h1>
+      </div>
 
-      {loading && <p>Loading...</p>}
+      <div className="dashboard-content">
+        {loading && (
+          <p style={{ color: "white", textAlign: "center" }}>Loading...</p>
+        )}
 
-      {!loading && complaints.length === 0 && <p>No unassigned complaints.</p>}
+        {!loading && complaints.length === 0 && (
+          <p style={{ color: "white", textAlign: "center" }}>
+            No unassigned complaints.
+          </p>
+        )}
 
-      <div className="dashboard-grid">
-        {complaints.map((c) => (
-          <div key={c.id} className="assign-card">
-            <h3>{c.title}</h3>
-            <p>
-              <strong>ID:</strong> {c.id}
-            </p>
-            <p>
-              <strong>Description:</strong> {c.description}
-            </p>
-            <p>
-              <strong>Status:</strong> {c.status}
-            </p>
-            <p>
-              <strong>Priority:</strong> {c.priority}
-            </p>
-            <p>
-              <strong>Category:</strong> {c.category}
-            </p>
+        <div className="dashboard-cards-grid">
+          {complaints.map((c) => (
+            <div key={c.id} className="assign-card-modern">
+              <h3>{c.title}</h3>
+              <div className="card-body">
+                <p>
+                  <strong>ID:</strong> {c.id}
+                </p>
+                <p>
+                  <strong>Status:</strong>{" "}
+                  <span className="badge badge-new">{c.status}</span>
+                </p>
+                <p>
+                  <strong>Priority:</strong>{" "}
+                  <span
+                    className={`priority-badge priority-${c.priority?.toLowerCase()}`}
+                  >
+                    {c.priority}
+                  </span>
+                </p>
+                <p>
+                  <strong>Category:</strong> {c.category}
+                </p>
+              </div>
 
-            {/* ENGINEER DROPDOWN */}
-            <select
-              value={selectedEngineer[c.id] || ""}
-              onChange={(e) =>
-                setSelectedEngineer({
-                  ...selectedEngineer,
-                  [c.id]: e.target.value,
-                })
-              }
-            >
-              <option value="">Select Engineer</option>
-              {engineers.map((eng) => (
-                <option key={eng.id} value={eng.id}>
-                  {eng.name}
-                </option>
-              ))}
-            </select>
+              <select
+                value={selectedEngineer[c.id] || ""}
+                onChange={(e) =>
+                  setSelectedEngineer({
+                    ...selectedEngineer,
+                    [c.id]: e.target.value,
+                  })
+                }
+                className="engineer-select"
+              >
+                <option value="">Select Engineer</option>
+                {engineers.map((eng) => (
+                  <option key={eng.id} value={eng.id}>
+                    {eng.name}
+                  </option>
+                ))}
+              </select>
 
-            <button onClick={() => handleAssign(c.id)}>Assign</button>
-          </div>
-        ))}
+              <button
+                className="btn-primary assign-btn"
+                onClick={() => handleAssign(c.id)}
+              >
+                Assign Now
+              </button>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

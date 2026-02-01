@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { reassignComplaint } from "../../api/leadApi";
+import "../../styles/global.css";
 
 export default function LeadReassignComplaint() {
   const { id } = useParams();
@@ -14,17 +15,29 @@ export default function LeadReassignComplaint() {
   };
 
   return (
-    <div>
-      <h2>Reassign Complaint</h2>
+    <div className="dashboard-container">
+      <div className="card form-card form-wrapper">
+        <h2>Reassign Complaint</h2>
 
-      <input
-        type="number"
-        placeholder="Engineer ID"
-        value={engineerId}
-        onChange={(e) => setEngineerId(e.target.value)}
-      />
+        <input
+          type="number"
+          placeholder="Engineer ID"
+          value={engineerId}
+          onChange={(e) => setEngineerId(e.target.value)}
+        />
 
-      <button onClick={handleSubmit}>Reassign</button>
+        <div style={{ marginTop: 12, display: "flex", gap: 8 }}>
+          <button className="btn-primary" onClick={handleSubmit}>
+            Reassign
+          </button>
+          <button
+            className="btn-secondary"
+            onClick={() => navigate("/lead/complaints")}
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

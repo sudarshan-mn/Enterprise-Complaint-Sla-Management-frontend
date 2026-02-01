@@ -9,7 +9,10 @@ export default function CustomerDashboard() {
       {/* TOP BAR */}
       <div className="customer-topbar">
         <h2>🛠 Complaint System</h2>
-        <button onClick={() => navigate("/login")} className="logout-btn">
+        <button
+          onClick={() => navigate("/login")}
+          className="btn-secondary logout-btn"
+        >
           Logout
         </button>
       </div>
@@ -26,7 +29,10 @@ export default function CustomerDashboard() {
           <div className="icon">➕</div>
           <h3>Raise Complaint</h3>
           <p>Create a new complaint for any issue you are facing.</p>
-          <button onClick={() => navigate("/customer/create")}>
+          <button
+            className="btn-primary"
+            onClick={() => navigate("/customer/create")}
+          >
             Create Complaint
           </button>
         </div>
@@ -35,7 +41,10 @@ export default function CustomerDashboard() {
           <div className="icon">📄</div>
           <h3>My Complaints</h3>
           <p>View status, timeline, and updates of your complaints.</p>
-          <button onClick={() => navigate("/customer/complaints")}>
+          <button
+            className="btn-primary"
+            onClick={() => navigate("/customer/complaints")}
+          >
             View Complaints
           </button>
         </div>
