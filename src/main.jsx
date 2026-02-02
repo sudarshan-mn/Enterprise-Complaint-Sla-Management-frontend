@@ -9,7 +9,7 @@ import "./styles/theme.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <BrowserRouter basename="/Enterprise-Complaint-Sla-Management-frontend/">
+    <BrowserRouter>
       <App />
     </BrowserRouter>
   </React.StrictMode>,
