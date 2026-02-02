@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 /* AUTH */
 import Login from "./pages/Login";
@@ -37,165 +37,171 @@ import ProtectedRoute from "./auth/ProtectedRoute";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        {/* DEFAULT */}
-        <Route path="/" element={<Navigate to="/login" replace />} />
-        {/* AUTH */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        {/* CUSTOMER */}
-        <Route
-          path="/customer"
-          element={
-            <ProtectedRoute allowedRoles={["CUSTOMER"]}>
-              <CustomerDashboard />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/customer/create"
-          element={
-            <ProtectedRoute allowedRoles={["CUSTOMER"]}>
-              <CreateComplaint />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/customer/complaints"
-          element={
-            <ProtectedRoute allowedRoles={["CUSTOMER"]}>
-              <MyComplaints />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/customer/complaints/:id"
-          element={
-            <ProtectedRoute allowedRoles={["CUSTOMER"]}>
-              <ComplaintDetail />
-            </ProtectedRoute>
-          }
-        />
-        {/* ADMIN */}
-        <Route
-          path="/admin"
-          element={
-            <ProtectedRoute allowedRoles={["ADMIN"]}>
-              <AdminDashboard />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/admin/complaints"
-          element={
-            <ProtectedRoute allowedRoles={["ADMIN"]}>
-              <AdminComplaints />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/admin/unassigned"
-          element={
-            <ProtectedRoute allowedRoles={["ADMIN"]}>
-              <AdminUnassignedComplaints />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/admin/metrics"
-          element={
-            <ProtectedRoute allowedRoles={["ADMIN"]}>
-              <AdminMetrics />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/admin/users/create"
-          element={
-            <ProtectedRoute allowedRoles={["ADMIN"]}>
-              <AdminAddUser />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/engineer"
-          element={
-            <ProtectedRoute allowedRoles={["ENGINEER"]}>
-              <EngineerDashboard />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/engineer/complaints"
-          element={
-            <ProtectedRoute allowedRoles={["ENGINEER"]}>
-              <EngineerComplaints />
-            </ProtectedRoute>
-          }
-        />
-        {/* LEAD */}
-        <Route
-          path="/lead"
-          element={
-            <ProtectedRoute allowedRoles={["LEAD"]}>
-              <LeadDashboard />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/lead/complaints"
-          element={
-            <ProtectedRoute allowedRoles={["LEAD"]}>
-              <LeadComplaints />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/lead/complaints/:id/reassign"
-          element={
-            <ProtectedRoute allowedRoles={["LEAD"]}>
-              <LeadReassignComplaint />
-            </ProtectedRoute>
-          }
-        />
-        /* MANAGER */
-        <Route
-          path="/manager"
-          element={
-            <ProtectedRoute allowedRoles={["MANAGER"]}>
-              <ManagerDashboard />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/manager/complaints"
-          element={
-            <ProtectedRoute allowedRoles={["MANAGER"]}>
-              <ManagerAllComplaints />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/manager/sla-breached"
-          element={
-            <ProtectedRoute allowedRoles={["MANAGER"]}>
-              <ManagerSlaBreached />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/manager/resolved"
-          element={
-            <ProtectedRoute allowedRoles={["MANAGER"]}>
-              <ManagerResolvedComplaints />
-            </ProtectedRoute>
-          }
-        />
-        {/* FALLBACK */}
-        <Route path="*" element={<Navigate to="/login" replace />} />
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      {/* DEFAULT */}
+      <Route path="/" element={<Navigate to="/login" replace />} />
+
+      {/* AUTH */}
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+
+      {/* CUSTOMER */}
+      <Route
+        path="/customer"
+        element={
+          <ProtectedRoute allowedRoles={["CUSTOMER"]}>
+            <CustomerDashboard />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/customer/create"
+        element={
+          <ProtectedRoute allowedRoles={["CUSTOMER"]}>
+            <CreateComplaint />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/customer/complaints"
+        element={
+          <ProtectedRoute allowedRoles={["CUSTOMER"]}>
+            <MyComplaints />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/customer/complaints/:id"
+        element={
+          <ProtectedRoute allowedRoles={["CUSTOMER"]}>
+            <ComplaintDetail />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* ADMIN */}
+      <Route
+        path="/admin"
+        element={
+          <ProtectedRoute allowedRoles={["ADMIN"]}>
+            <AdminDashboard />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin/complaints"
+        element={
+          <ProtectedRoute allowedRoles={["ADMIN"]}>
+            <AdminComplaints />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin/unassigned"
+        element={
+          <ProtectedRoute allowedRoles={["ADMIN"]}>
+            <AdminUnassignedComplaints />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin/metrics"
+        element={
+          <ProtectedRoute allowedRoles={["ADMIN"]}>
+            <AdminMetrics />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin/users/create"
+        element={
+          <ProtectedRoute allowedRoles={["ADMIN"]}>
+            <AdminAddUser />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* ENGINEER */}
+      <Route
+        path="/engineer"
+        element={
+          <ProtectedRoute allowedRoles={["ENGINEER"]}>
+            <EngineerDashboard />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/engineer/complaints"
+        element={
+          <ProtectedRoute allowedRoles={["ENGINEER"]}>
+            <EngineerComplaints />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* LEAD */}
+      <Route
+        path="/lead"
+        element={
+          <ProtectedRoute allowedRoles={["LEAD"]}>
+            <LeadDashboard />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/lead/complaints"
+        element={
+          <ProtectedRoute allowedRoles={["LEAD"]}>
+            <LeadComplaints />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/lead/complaints/:id/reassign"
+        element={
+          <ProtectedRoute allowedRoles={["LEAD"]}>
+            <LeadReassignComplaint />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* MANAGER */}
+      <Route
+        path="/manager"
+        element={
+          <ProtectedRoute allowedRoles={["MANAGER"]}>
+            <ManagerDashboard />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/manager/complaints"
+        element={
+          <ProtectedRoute allowedRoles={["MANAGER"]}>
+            <ManagerAllComplaints />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/manager/sla-breached"
+        element={
+          <ProtectedRoute allowedRoles={["MANAGER"]}>
+            <ManagerSlaBreached />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/manager/resolved"
+        element={
+          <ProtectedRoute allowedRoles={["MANAGER"]}>
+            <ManagerResolvedComplaints />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* FALLBACK */}
+      <Route path="*" element={<Navigate to="/login" replace />} />
+    </Routes>
   );
 }
 
