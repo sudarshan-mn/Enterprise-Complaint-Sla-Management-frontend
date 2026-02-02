@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { loginApi } from "../api/authApi";
 import { setAuth, getRoleFromToken } from "../auth/auth";
 import "../styles/login.css";
@@ -72,7 +72,7 @@ function Login() {
         <button type="submit">Login</button>
 
         <p className="link">
-          New user? <a href="/register">Register here</a>
+          New user? <Link to="/register">Register here</Link>
         </p>
       </form>
     </div>

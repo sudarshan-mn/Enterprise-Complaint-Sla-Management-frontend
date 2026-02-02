@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { registerApi } from "../api/authApi";
 import "../styles/register.css";
 
@@ -78,7 +79,7 @@ export default function Register() {
         <button type="submit">Register</button>
 
         <p className="link">
-          Already have an account? <a href="/login">Login</a>
+          Already have an account? <Link to="/login">Login</Link>
         </p>
       </form>
     </div>

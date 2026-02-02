@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { getToken } from "../../auth/auth";
 import "../../styles/global.css";
+import api from "../../api/axios";
 
 export default function AdminAddUser() {
   const [form, setForm] = useState({
@@ -22,11 +23,7 @@ export default function AdminAddUser() {
     }
 
     try {
-      await axios.post("http://localhost:8080/api/users", form, {
-        headers: {
-          Authorization: `Bearer ${getToken()}`,
-        },
-      });
+      await api.post("/users", form);
       alert("User created successfully");
       setForm({ name: "", email: "", password: "", role: "" });
     } catch (err) {
