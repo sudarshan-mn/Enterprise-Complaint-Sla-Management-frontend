@@ -5,17 +5,18 @@ import api from "./axios";
 /* ✅ MANAGER APIs ONLY */
 
 // SLA breached complaints
-export const getSlaBreachedComplaints = () => api.get("/manager/sla-breached");
+export const getSlaBreachedComplaints = () =>
+  api.get("/api/manager/sla-breached");
 
 // Resolved complaints (only these can be closed)
-export const getResolvedComplaints = () => api.get("/manager/resolved");
+export const getResolvedComplaints = () => api.get("/api/manager/resolved");
 
 // Close complaint
 export const closeComplaint = (id) =>
-  api.put(`/manager/complaints/${id}/close`);
+  api.put(`/api/manager/complaints/${id}/close`);
 
 // Timeline (shared endpoint)
 export const getComplaintTimeline = (id) =>
-  api.get(`/complaints/${id}/timeline`);
+  api.get(`/api/complaints/${id}/timeline`);
 
-export const getAllComplaints = () => api.get("/complaints/all");
+export const getAllComplaints = () => api.get("/api/complaints/all");

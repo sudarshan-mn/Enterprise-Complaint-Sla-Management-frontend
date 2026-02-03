@@ -1,16 +1,16 @@
 import api from "./axios";
 
 export const getAllComplaints = (page = 0, size = 10) => {
-  return api.get(`/complaints/all?page=${page}&size=${size}`);
+  return api.get(`/api/complaints/all?page=${page}&size=${size}`);
 };
 export const assignComplaint = (complaintId, engineerId) => {
-  return api.put(`/complaints/${complaintId}/assign`, {
+  return api.put(`/api/complaints/${complaintId}/assign`, {
     engineerId,
   });
 };
 export const getAllUsers = () => {
-  return api.get("/users");
+  return api.get("/api/users");
 };
 export const getAdminMetrics = () => {
-  return api.get("/admin/dashboard");
+  return api.get("/api/admin/dashboard");
 };
