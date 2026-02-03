@@ -1,21 +1,60 @@
-.lead-container { padding: 20px; }
+.lead-container {
+  padding: 20px;
+}
 
-.styled-table { width: 100%; border-collapse: collapse; background: var(--card-bg); border-radius: 8px; overflow: hidden; }
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card-bg);
+  border-radius: 8px;
+  overflow: hidden;
+}
 
-.styled-table th, .styled-table td { padding: 12px; border-bottom: 1px solid #eef2ff; text-align: left; }
+.styled-table th,
+.styled-table td {
+  padding: 12px;
+  border-bottom: 1px solid #eef2ff;
+  text-align: left;
+}
 
-.styled-table th { background: #f8fafc; color: var(--muted); }
+.styled-table th {
+  background: #f8fafc;
+  color: var(--muted);
+}
 
-.actions button { margin-right: 6px; padding: 6px 10px; border: none; cursor: pointer; border-radius: 6px; background: linear-gradient(90deg,var(--primary),var(--primary-600)); color: white; }
+.actions button {
+  margin-right: 6px;
+  padding: 6px 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  background: linear-gradient(90deg, var(--primary), var(--primary-600));
+  color: white;
+}
 
-.actions .danger { background: #ef4444; }
-.badge { padding: 4px 8px; border-radius: 12px; font-size: 12px; color: white; }
-.badge.new { background: #f59e0b; }
-.badge.assigned { background: var(--primary); }
-.badge.in_progress { background: #f97316; }
-.badge.resolved { background: #16a34a; }
-.badge.closed { background: #6b7280; }
-  background: black;
+.actions .danger {
+  background: #ef4444;
+}
+.badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  color: white;
+}
+.badge.new {
+  background: #f59e0b;
+}
+.badge.assigned {
+  background: var(--primary);
+}
+.badge.in_progress {
+  background: #f97316;
+}
+.badge.resolved {
+  background: #16a34a;
+}
+.badge.closed {
+  background: #6b7280;
 }
 
 /* MODAL */
@@ -31,9 +70,21 @@
   align-items: center;
 }
 
-.modal-content { background: var(--card-bg); padding: 20px; border-radius: 10px; width: 420px; box-shadow: var(--shadow-lg); }
+.modal-content {
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: 10px;
+  width: 420px;
+  box-shadow: var(--shadow-lg);
+}
 
-.modal-content select { width: 100%; padding: 10px; margin-top: 10px; border-radius: 8px; border: 1px solid #e6e9ef; }
+.modal-content select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 8px;
+  border: 1px solid #e6e9ef;
+}
 
 .modal-actions {
   margin-top: 15px;
