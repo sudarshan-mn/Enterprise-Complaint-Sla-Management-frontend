@@ -9,8 +9,11 @@ export const assignComplaint = (complaintId, engineerId) => {
   });
 };
 export const getAllUsers = () => {
-  return api.get("/api/admin/users");
+  return api.get("/api/users");
 };
 export const getAdminMetrics = () => {
   return api.get("/api/admin/dashboard");
+};
+export const createUser = (data) => {
+  return api.post("/api/users", data);
 };

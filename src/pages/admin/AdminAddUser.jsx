@@ -23,7 +23,7 @@ export default function AdminAddUser() {
     }
 
     try {
-      await api.post("/users", form);
+      await api.post("/api/users", form);
       alert("User created successfully");
       setForm({ name: "", email: "", password: "", role: "" });
     } catch (err) {
